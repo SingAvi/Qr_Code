@@ -14,17 +14,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:magic_button_size="50dp"
+
         app:button_icon="@drawable/ic_fingerprint_black_24dp"
         app:button_icon_width="25dp"
         app:button_icon_height="25dp"
+        android:elevation="5dp"
+
         app:hide_text="Generated"
-        app:hide_text_color="#ffffff"
+        app:hide_text_color="#000000"
         android:paddingTop="15dp"
         android:layout_below="@+id/edit_Text"
         android:layout_alignParentRight="true"
         android:paddingRight="10dp"
-        app:icon_button_color="#f9f9f9"
-        app:expandable_area_color="#060279"/>
+        app:icon_button_color="#2ecc71"
+        app:expandable_area_color="#fad737"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -36,22 +39,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Credentials"
-            android:textColorHint="@color/colorAccent"/>
+            android:id="@+id/text_input"
+            android:textColorHint="#d6ff43"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Credentials can be text, Urls or links"
+        android:layout_marginLeft="3dp"
+        android:text="Credentials can be text, Urls or links."
         android:layout_below="@id/edit_Text"
-
         android:textSize="12dp"/>
+
+
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/output_image"
+        android:src="@drawable/v"
         android:layout_below="@+id/magic_button"
+        android:layout_margin="20dp"
         android:paddingTop="5dp"/>
 
     
