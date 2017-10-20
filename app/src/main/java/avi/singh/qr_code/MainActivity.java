@@ -1,5 +1,6 @@
 package avi.singh.qr_code;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -15,14 +17,16 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import br.com.bloder.magic.view.MagicButton;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText editText;
-    MagicButton magicButton;
+    Button button;
     ImageView imageView;
+    String user_input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +36,27 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         editText = (EditText)findViewById(R.id.text_input);
-        magicButton=(MagicButton)findViewById(R.id.magic_button);
+        button=(Button)findViewById(R.id.generate);
         imageView = (ImageView)findViewById(R.id.output_image);
 
-        magicButton.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
 
                 MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
                 try
                 {
-                    BitMatrix bitMatrix = multiFormatWriter.encode("text2Qr", BarcodeFormat.QR_CODE,200,200);
+                    user_input = editText.getText().toString().trim();
+                    BitMatrix bitMatrix = multiFormatWriter.encode(user_input, BarcodeFormat.QR_CODE,200,200);
+                    BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+                    Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+                    imageView.setImageBitmap(bitmap);
+                }
 
-
-                } catch (WriterException e) {
+                catch (WriterException e)
+                {
                     e.printStackTrace();
                 }
             }
